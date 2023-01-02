@@ -25,6 +25,17 @@ data$date = as.Date(data$X.1, format = "%m/%d/%Y")
 data$week = week(data$date)
 data$month = format(data$date,"%B")
 data$month[data$month == "January"] = "Jan"
+data$month[data$month == "February"] = "Feb"
+data$month[data$month == "March"] = "Mar"
+data$month[data$month == "April"] = "Apr"
+data$month[data$month == "May"] = "May"
+data$month[data$month == "June"] = "Jun"
+data$month[data$month == "July"] = "Jul"
+data$month[data$month == "August"] = "Aug"
+data$month[data$month == "September"] = "Sep"
+data$month[data$month == "October"] = "Oct"
+data$month[data$month == "November"] = "Nov"
+data$month[data$month == "December"] = "Dec"
 
 data$month = factor(data$month, list(
   "Jan", "Feb", "Mar", 
@@ -442,160 +453,270 @@ melt_and_plot = function(data, title) {
 # PLOT 3x4 grids
 #######################################
 
-data_shower = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+{
+  data_showered = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$shower
+  )
+  plot_showered = plot_year_3_by_4(data_showered, "Showered")
   
-  "fill" = data$shower
-)
-plot_shower = plot_year_3_by_4(data_shower, "Showered")
-
-data_poop = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_poop = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$poop
+  )
+  plot_poop = plot_year_3_by_4(data_poop, "Pooped")
   
-  "fill" = data$poop
-)
-plot_poop = plot_year_3_by_4(data_poop, "Pooped")
-
-data_cooked = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_cooked = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$cooked
+  )
+  plot_cooked = plot_year_3_by_4(data_cooked, "Cooked")
   
-  "fill" = data$cooked
-)
-plot_cooked = plot_year_3_by_4(data_cooked, "Cooked")
-
-data_delivery = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_delivery = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$deliver...pick.up.food
+  )
+  plot_delivery = plot_year_3_by_4(data_delivery, "Ordered Food")
   
-  "fill" = data$deliver...pick.up.food
-)
-plot_delivery = plot_year_3_by_4(data_delivery, "Ordered Food")
-
-data_restaurant = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_restaurant = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$ate.at.restaurant
+  )
+  plot_restaurant = plot_year_3_by_4(data_restaurant, "Ate at Restaurant")
   
-  "fill" = data$ate.at.restaurant
-)
-plot_restaurant = plot_year_3_by_4(data_restaurant, "Ate at Restaurant")
-
-data_caffeine = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_caffeine = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$caffeine
+  )
+  plot_caffeine = plot_year_3_by_4(data_caffeine, "Caffeine")
   
-  "fill" = data$caffeine
-)
-plot_caffeine = plot_year_3_by_4(data_caffeine, "Caffeine")
-
-data_alcohol = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_alcohol = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$alcohol
+  )
+  plot_alcohol = plot_year_3_by_4(data_alcohol, "Alcohol")
   
-  "fill" = data$alcohol
-)
-plot_alcohol = plot_year_3_by_4(data_alcohol, "Alcohol")
-
-data_weed = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_weed = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$weed
+  )
+  plot_weed = plot_year_3_by_4(data_weed, "Weed")
   
-  "fill" = data$weed
-)
-plot_weed = plot_year_3_by_4(data_weed, "Weed")
-
-data_adderall = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_adderall = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$adderall
+  )
+  plot_adderall = plot_year_3_by_4(data_adderall, "Adderall")
   
-  "fill" = data$adderall
-)
-plot_adderall = plot_year_3_by_4(data_adderall, "Adderall")
-
-
-data_cried = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_cried = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$cried
+  )
+  plot_cried = plot_year_3_by_4(data_cried, "Cried")
   
-  "fill" = data$cried
-)
-plot_cried = plot_year_3_by_4(data_cried, "Cried")
-
-data_personal_coding = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_personal_coding = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$personal.coding
+  )
+  plot_personal_coding = plot_year_3_by_4(data_personal_coding, "Personal Coding")
   
-  "fill" = data$personal.coding
-)
-plot_personal_coding = plot_year_3_by_4(data_personal_coding, "Personal Coding")
-
-
-data_worked_remotely = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_worked_remotely = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$worked.remotely
+  )
+  plot_worked_remotely = plot_year_3_by_4(data_worked_remotely, "Worked Remotely")
   
-  "fill" = data$worked.remotely
-)
-plot_worked_remotely = plot_year_3_by_4(data_worked_remotely, "Worked Remotely")
-
-data_worked_in_office = data.frame(
-  "date" = data$date, 
-  "month" = data$month, 
-  "day_of_week" = data$day_of_week, 
-  "monthweek" = data$monthweek,
+  data_worked_in_office = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$went.to.work
+  )
+  plot_worked_in_office = plot_year_3_by_4(data_worked_in_office, "Worked in Office")
   
-  "fill" = data$went.to.work
-)
-plot_worked_in_office = plot_year_3_by_4(data_worked_in_office, "Worked in Office")
+  data_breakfast = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$breakfast
+  )
+  plot_breakfast = plot_year_3_by_4(data_breakfast, "Breakfast")
+  
+  data_lunch = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$lunch
+  )
+  plot_lunch = plot_year_3_by_4(data_lunch, "Lunch")
+  
+  data_dinner = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$dinner
+  )
+  plot_dinner = plot_year_3_by_4(data_dinner, "Dinner")
+  
+  data_midnight_snack = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$midnight.snack
+  )
+  plot_midnight_snack = plot_year_3_by_4(data_midnight_snack, "Midnight Snack")
 
-combo_plot = ggarrange(
+  data_exercise = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$exercise
+  )
+  plot_exercise = plot_year_3_by_4(data_exercise, "Exercise")
+  
+  data_chores = data.frame(
+    "date" = data$date, 
+    "month" = data$month, 
+    "day_of_week" = data$day_of_week, 
+    "monthweek" = data$monthweek,
+    
+    "fill" = data$chores
+  )
+  plot_chores = plot_year_3_by_4(data_chores, "Chores")
+}
+
+#--------------------------------------
+# REDDIT
+#--------------------------------------
+
+color_values = c("#606060FF", "#D6ED17FF")
+
+
+reddit_combo_plot = ggarrange(
   plot_caffeine,
   plot_adderall,
-  plot_worked_remotely,
-  plot_worked_in_office,
+  plot_weed,
+  plot_alcohol,
   
   plot_cooked,
   plot_delivery,
   plot_restaurant,
-  
-  plot_shower,
-  plot_cried,
   plot_poop,
   
-  common.legend = TRUE, 
+  plot_cried,
+  plot_personal_coding,
+  plot_worked_remotely,
+  plot_worked_in_office,
+  
+  common.legend = TRUE,
   legend = "right"
 )
 
 annotate_figure(
-  combo_plot, 
+  reddit_combo_plot, 
   top = text_grob(
-    "\nMy 2022 in Booleans\n",
+    "\n2022 in Booleans\n",
+    face = "bold",
+    family = "mono",
+    size = 24
+  )
+)
+
+#--------------------------------------
+# INSTAGRAM
+#--------------------------------------
+
+color_values = c("#D3D3D3", "#4CBB17")
+
+insta_combo_plot = ggarrange(
+  plot_breakfast,
+  plot_lunch,
+  plot_dinner,
+  plot_midnight_snack,
+  
+  plot_caffeine,
+  plot_showered,
+  plot_poop,
+  plot_exercise,
+  
+  plot_chores,
+  plot_cooked,
+  plot_delivery,
+  plot_restaurant,
+  
+  plot_cried,
+  plot_personal_coding,
+  plot_worked_remotely,
+  plot_worked_in_office,
+  
+  common.legend = TRUE,
+  legend = "right"
+)
+
+annotate_figure(
+  insta_combo_plot, 
+  top = text_grob(
+    "\n2022 in Booleans\n",
     face = "bold",
     family = "mono",
     size = 20
@@ -617,7 +738,7 @@ plot_year_3_by_4 = function(data, title) {
   ) +
     scale_fill_manual(
       na.translate = F,
-      values = c("#606060FF", "#D6ED17FF"),
+      values = color_values,
       labels = c("False", "True")
     ) + 
     facet_wrap(
